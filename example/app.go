@@ -7,7 +7,9 @@ import (
 )
 
 func main() {
-	app.Route("/", &page{})
+	for path, new := range pages() {
+		app.Route("/"+path, new())
+	}
 
 	app.Run()
 }
