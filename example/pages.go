@@ -22,7 +22,14 @@ func newPage() app.UI {
 func (p *page) Render() app.UI {
 	return app.Div().
 		Body(
-			app.H4().Text("Section"),
+			uikit.Section().
+				XSmall().
+				Content(
+					uikit.Container().
+						Content(
+							app.H1().Text("Sections"),
+						),
+				),
 			uikit.Section().
 				Muted().
 				XSmall().
@@ -40,13 +47,21 @@ func (p *page) Render() app.UI {
 							app.P().Text("Section Primary!"),
 						),
 				),
+			uikit.Section().
+				Secondary().
+				Content(
+					uikit.Container().
+						Content(
+							app.P().Text("Section Secondary!"),
+						),
+				),
 
 			uikit.Section().
 				Default().
 				Content(
 					uikit.Container().
 						Content(
-							app.H4().Text("Alerts"),
+							app.H1().Text("Alerts"),
 							uikit.Alert().
 								Primary().
 								Close(true).
@@ -78,21 +93,96 @@ func (p *page) Render() app.UI {
 				Content(
 					uikit.Container().
 						Content(
-							app.H4().Text("Accordion"),
-							uikit.Accordion().
-								Option("multiple", true).
-								Class("uk-width-1-2").
+							app.H1().Text("Accordions"),
+							uikit.Grid().
+								Class("uk-child-width-expand").
+								Divider().
 								Content(
-									uikit.AccordionItem().
-										Title("Item 1").
-										Content(
-											app.P().Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+									app.Div().
+										Body(
+											app.P().Text("With multiple select"),
+											uikit.Accordion().
+												Option("multiple", true).
+												Content(
+													uikit.AccordionItem().
+														Title("Item 1").
+														Content(
+															app.P().Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+														),
+													uikit.AccordionItem().
+														Title("Item 2").
+														Content(
+															app.P().Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+														),
+												),
 										),
-									uikit.AccordionItem().
-										Title("Item 2").
-										Content(
-											app.P().Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+									app.Div().
+										Body(
+											app.P().Text("With single select"),
+											uikit.Accordion().
+												Content(
+													uikit.AccordionItem().
+														Title("Item 1").
+														Content(
+															app.P().Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+														),
+													uikit.AccordionItem().
+														Title("Item 2").
+														Content(
+															app.P().Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+														),
+												),
 										),
+								),
+						),
+				),
+			uikit.Section().
+				Content(
+					uikit.Container().
+						Content(
+							app.H1().
+								Text("Cards"),
+							uikit.Grid().
+								Class("uk-child-width-expand uk-text-center").
+								Content(
+									app.Div().Body(
+										uikit.Card().
+											Default().
+											Content(
+												app.H3().
+													Class("uk-card-title").
+													Text("Default"),
+												app.P().
+													Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+											).
+											Hover(),
+									),
+									app.Div().Body(
+										uikit.Card().
+											Primary().
+											Small().
+											Content(
+												app.H3().
+													Class("uk-card-title").
+													Text("Small"),
+												app.P().
+													Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+											).
+											Hover(),
+									),
+									app.Div().Body(
+										uikit.Card().
+											Secondary().
+											Large().
+											Content(
+												app.H3().
+													Class("uk-card-title").
+													Text("Large"),
+												app.P().
+													Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+											).
+											Hover(),
+									),
 								),
 						),
 				),
