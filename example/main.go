@@ -57,10 +57,12 @@ func main() {
 		Scripts: []string{
 			"/web/js/uikit.min.js",
 			"/web/js/uikit-icons.min.js",
+			"/web/js/prism.js",
 		},
 		Styles: []string{
 			"https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;700&family=Montserrat:wght@300;400;700&display=swap",
 			"/web/css/uikit.min.css",
+			"/web/css/prism.css",
 			"/web/css/app.css",
 		},
 		ThemeColor: backgroundColor,
