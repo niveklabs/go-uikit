@@ -4,7 +4,9 @@
 
 - Accordion
 - Alert
+- Card
 - Container
+- Grid
 - Section
 
 ### Example
