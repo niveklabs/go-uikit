@@ -54,6 +54,11 @@ func main() {
 		},
 		LoadingLabel: "Loading Go-UIkit...",
 		Name:         "GO-UIkit",
+		Icon: app.Icon{
+			Default:    "/web/images/android-chrome-192x192.png",
+			Large:      "/web/images/android-chrome-512x512.png",
+			AppleTouch: "/web/images/apple-touch-icon.png",
+		},
 		Scripts: []string{
 			"/web/js/uikit.min.js",
 			"/web/js/uikit-icons.min.js",

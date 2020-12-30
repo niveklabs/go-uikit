@@ -3,12 +3,12 @@
   "name": "GO-UIkit",
   "icons": [
     {
-      "src": "https://storage.googleapis.com/murlok-github/icon-192.png",
+      "src": "/web/images/android-chrome-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "https://storage.googleapis.com/murlok-github/icon-512.png",
+      "src": "/web/images/android-chrome-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
