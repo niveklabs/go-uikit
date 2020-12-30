@@ -19,6 +19,24 @@ func newPage() app.UI {
 	return &page{}
 }
 
+func (p *page) highlightCode() {
+	app.Dispatch(func() {
+		app.Window().Get("Prism").Call("highlightAll")
+	})
+}
+
+func (p *page) OnMount(ctx app.Context) {
+	p.Update()
+	go p.load(ctx)
+}
+
+func (p *page) load(ctx app.Context) {
+	defer app.Dispatch(func() {
+		p.Update()
+		p.highlightCode()
+	})
+}
+
 func (p *page) Render() app.UI {
 	return app.Div().
 		Body(
@@ -27,16 +45,7 @@ func (p *page) Render() app.UI {
 				Content(
 					uikit.Container().
 						Content(
-							app.H1().Text("Sections"),
-						),
-				),
-			uikit.Section().
-				Muted().
-				XSmall().
-				Content(
-					uikit.Container().
-						Content(
-							app.P().Text("XSmall section Muted!"),
+							app.H1().Text("Section"),
 						),
 				),
 			uikit.Section().
@@ -47,45 +56,28 @@ func (p *page) Render() app.UI {
 							app.P().Text("Section Primary!"),
 						),
 				),
-			uikit.Section().
-				Secondary().
+			uikit.Container().
+				Class("uk-padding uk-padding-remove-bottom").
 				Content(
-					uikit.Container().
-						Content(
-							app.P().Text("Section Secondary!"),
-						),
-				),
-
+					app.Pre().
+						Body(
+							app.Code().
+								Class("language-go").
+								Text(`
+func (p *page) Render() app.UI {
+	return app.Div().
+		Body(
 			uikit.Section().
-				Default().
-				Content(
-					uikit.Container().
-						Content(
-							app.H1().Text("Alerts"),
-							uikit.Alert().
-								Primary().
-								Close(true).
-								Content(
-									app.P().Text("I am a primary alert!"),
-								),
-							uikit.Alert().
-								Success().
-								Close(true).
-								Content(
-									app.P().Text("I am a success alert!"),
-								),
-							uikit.Alert().
-								Warning().
-								Close(true).
-								Content(
-									app.P().Text("I am a warning alert!"),
-								),
-							uikit.Alert().
-								Danger().
-								Close(true).
-								Content(
-									app.P().Text("I am a danger alert!"),
-								),
+			Primary().
+			Content(
+				uikit.Container().
+					Content(
+						app.P().Text("Section Primary!"),
+					),
+			),
+		)
+}
+									`),
 						),
 				),
 			uikit.Section().
@@ -93,7 +85,72 @@ func (p *page) Render() app.UI {
 				Content(
 					uikit.Container().
 						Content(
-							app.H1().Text("Accordions"),
+							app.H1().Text("Alert"),
+							uikit.Grid().
+								Class("uk-child-width-expand").
+								Content(
+									app.Div().Body(
+										uikit.Alert().
+											Primary().
+											Close(true).
+											Content(
+												app.P().Text("I am a primary alert!"),
+											),
+									),
+									app.Div().Body(
+										uikit.Alert().
+											Success().
+											Close(true).
+											Content(
+												app.P().Text("I am a success alert!"),
+											),
+									),
+									app.Div().Body(
+										uikit.Alert().
+											Warning().
+											Close(true).
+											Content(
+												app.P().Text("I am a warning alert!"),
+											),
+									),
+									app.Div().Body(
+										uikit.Alert().
+											Danger().
+											Close(true).
+											Content(
+												app.P().Text("I am a danger alert!"),
+											),
+									),
+								),
+						),
+				),
+			uikit.Container().
+				Content(
+					app.Pre().
+						Body(
+							app.Code().
+								Class("language-go").
+								Text(`
+func (p *page) Render() app.UI {
+	return app.Div().
+		Body(
+			uikit.Alert().
+				Danger().
+				Close(true).
+				Content(
+					app.P().Text("I am a danger alert!"),
+				),
+			)
+}
+							`),
+						),
+				),
+			uikit.Section().
+				Default().
+				Content(
+					uikit.Container().
+						Content(
+							app.H1().Text("Accordion"),
 							uikit.Grid().
 								Class("uk-child-width-expand").
 								Divider().
@@ -136,12 +193,39 @@ func (p *page) Render() app.UI {
 								),
 						),
 				),
+			uikit.Container().
+				Content(
+					app.Pre().
+						Body(
+							app.Code().
+								Class("language-go").
+								Text(`
+func (p *page) Render() app.UI {
+	return app.Div().
+		Body(
+			uikit.Accordion().
+			Content(
+				uikit.AccordionItem().
+					Title("Item 1").
+					Content(
+						app.P().Text("Lorem ipsum dolor sit amet."),
+					),
+				uikit.AccordionItem().
+					Title("Item 2").
+					Content(
+						app.P().Text("Lorem ipsum dolor sit amet."),
+					),
+			),
+}
+							`),
+						),
+				),
 			uikit.Section().
 				Content(
 					uikit.Container().
 						Content(
 							app.H1().
-								Text("Cards"),
+								Text("Card"),
 							uikit.Grid().
 								Class("uk-child-width-expand uk-text-center").
 								Content(
@@ -184,6 +268,31 @@ func (p *page) Render() app.UI {
 											Hover(),
 									),
 								),
+						),
+				),
+			uikit.Container().
+				Content(
+					app.Pre().
+						Body(
+							app.Code().
+								Class("language-go").
+								Text(`
+func (p *page) Render() app.UI {
+	return app.Div().
+		Body(
+			uikit.Card().
+				Default().
+				Content(
+					app.H3().
+						Class("uk-card-title").
+						Text("Default"),
+					app.P().
+						Text("Lorem ipsum dolor sit amet."),
+				).
+				Hover(),
+			)
+}
+							`),
 						),
 				),
 		)
