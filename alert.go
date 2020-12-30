@@ -8,7 +8,7 @@ import (
 type UIAlert interface {
 	app.UI
 
-	// Class adds a CSS class to the section.
+	// Class adds a CSS class to the alert.
 	Class(c string) UIAlert
 
 	// Content sets the main content.
