@@ -39,6 +39,13 @@ type container struct {
 	Icontent []app.UI
 }
 
+// Container returns a container component.
+func Container() UIContainer {
+	return &container{
+		Iclass: "uk-container",
+	}
+}
+
 func (c *container) Class(v string) UIContainer {
 	if c.Iclass != "" {
 		c.Iclass += " "
@@ -79,7 +86,6 @@ func (c *container) XSmall() UIContainer {
 }
 
 func (c *container) Render() app.UI {
-
 	return app.Div().
 		Class(c.Iclass).
 		Body(c.Icontent...)

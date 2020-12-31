@@ -42,6 +42,13 @@ type card struct {
 	Icontent []app.UI
 }
 
+// Card returns a card component.
+func Card() UICard {
+	return &card{
+		Iclass: "uk-card",
+	}
+}
+
 func (c *card) Class(v string) UICard {
 	if c.Iclass != "" {
 		c.Iclass += " "
@@ -87,7 +94,6 @@ func (c *card) Small() UICard {
 }
 
 func (c *card) Render() app.UI {
-
 	return app.Div().
 		Class(c.Iclass).
 		Body(c.Icontent...)

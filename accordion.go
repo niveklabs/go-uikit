@@ -15,6 +15,9 @@ type UIAccordion interface {
 
 	// Content sets the main content.
 	Content(elems ...app.UI) UIAccordion
+
+	// Option sets a component option.
+	Option(k string, v interface{}) UIAccordion
 }
 
 type accordion struct {
@@ -22,6 +25,13 @@ type accordion struct {
 
 	Iclass   string
 	Icontent []app.UI
+
+	Ioptions map[string]interface{}
+}
+
+// Accordion returns a accordion component.
+func Accordion() UIAccordion {
+	return &accordion{}
 }
 
 func (a *accordion) Class(v string) UIAccordion {
@@ -38,9 +48,19 @@ func (a *accordion) Content(elems ...app.UI) UIAccordion {
 	return a
 }
 
+func (a *accordion) Option(k string, v interface{}) UIAccordion {
+	if a.Ioptions == nil {
+		a.Ioptions = make(map[string]interface{}, 0)
+	}
+	a.Ioptions[k] = v
+	return a
+}
+
 func (a *accordion) Render() app.UI {
+	opts, _ := JSONString(a.Ioptions)
 
 	return app.Ul().
+		DataSet("uk-accordion", opts).
 		Class(a.Iclass).
 		Body(a.Icontent...)
 }

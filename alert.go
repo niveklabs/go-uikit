@@ -41,6 +41,11 @@ type alert struct {
 	Ioptions map[string]interface{}
 }
 
+// Alert returns a alert component.
+func Alert() UIAlert {
+	return &alert{}
+}
+
 func (a *alert) Class(v string) UIAlert {
 	if a.Iclass != "" {
 		a.Iclass += " "
@@ -84,7 +89,6 @@ func (a *alert) Warning() UIAlert {
 }
 
 func (a *alert) Render() app.UI {
-
 	opts, _ := JSONString(a.Ioptions)
 
 	return app.Div().

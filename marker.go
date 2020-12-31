@@ -29,6 +29,11 @@ type marker struct {
 	Ioptions map[string]interface{}
 }
 
+// Marker returns a marker component.
+func Marker() UIMarker {
+	return &marker{}
+}
+
 func (m *marker) Class(v string) UIMarker {
 	if m.Iclass != "" {
 		m.Iclass += " "
@@ -52,7 +57,6 @@ func (m *marker) Option(k string, v interface{}) UIMarker {
 }
 
 func (m *marker) Render() app.UI {
-
 	opts, _ := JSONString(m.Ioptions)
 
 	return app.A().

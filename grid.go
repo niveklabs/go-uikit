@@ -47,6 +47,11 @@ type grid struct {
 	Ioptions map[string]interface{}
 }
 
+// Grid returns a grid component.
+func Grid() UIGrid {
+	return &grid{}
+}
+
 func (g *grid) Class(v string) UIGrid {
 	if g.Iclass != "" {
 		g.Iclass += " "
@@ -100,7 +105,6 @@ func (g *grid) Small() UIGrid {
 }
 
 func (g *grid) Render() app.UI {
-
 	opts, _ := JSONString(g.Ioptions)
 
 	return app.Div().

@@ -29,9 +29,10 @@ type part struct {
 
 var components = []component{
 	{
-		Name: "accordion",
-		Doc:  "create a list of items that can be shown individually by clicking an item's header.",
-		Elem: "Ul",
+		Name:   "accordion",
+		Doc:    "create a list of items that can be shown individually by clicking an item's header.",
+		Elem:   "Ul",
+		Option: true,
 	},
 	{
 		Name:      "alert",
@@ -285,6 +286,17 @@ type {{.Name}} struct {
 {{end}}
 }
 
+// {{title .Name}} returns a {{.Name}} component.
+func {{title .Name}}() UI{{title .Name}} {
+{{- if .Option}}
+	return &{{.Name}}{}
+{{else}}
+	return &{{.Name}}{
+		Iclass: "uk-{{.Name}}",
+	}
+{{end -}}
+}
+
 func ({{id .Name}} *{{.Name}}) Class(v string) UI{{title .Name}} {
 	if {{id .Name}}.Iclass != "" {
 		{{id .Name}}.Iclass += " "
@@ -318,11 +330,9 @@ func ({{id .Name}} *{{.Name}}) Option(k string, v interface{}) UI{{title .Name}}
 
 
 func ({{id .Name}} *{{.Name}}) Render() app.UI {
-
-{{if .Option}}
+{{- if .Option}}
 	opts, _ := JSONString({{id .Name}}.Ioptions)
 {{end}}
-
 	return app.{{.Elem}}().
 {{if .Option}}
 		DataSet("uk-{{lower .Name}}", opts).

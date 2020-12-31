@@ -29,6 +29,11 @@ type lightbox struct {
 	Ioptions map[string]interface{}
 }
 
+// Lightbox returns a lightbox component.
+func Lightbox() UILightbox {
+	return &lightbox{}
+}
+
 func (l *lightbox) Class(v string) UILightbox {
 	if l.Iclass != "" {
 		l.Iclass += " "
@@ -52,7 +57,6 @@ func (l *lightbox) Option(k string, v interface{}) UILightbox {
 }
 
 func (l *lightbox) Render() app.UI {
-
 	opts, _ := JSONString(l.Ioptions)
 
 	return app.Div().

@@ -29,6 +29,11 @@ type leader struct {
 	Ioptions map[string]interface{}
 }
 
+// Leader returns a leader component.
+func Leader() UILeader {
+	return &leader{}
+}
+
 func (l *leader) Class(v string) UILeader {
 	if l.Iclass != "" {
 		l.Iclass += " "
@@ -52,7 +57,6 @@ func (l *leader) Option(k string, v interface{}) UILeader {
 }
 
 func (l *leader) Render() app.UI {
-
 	opts, _ := JSONString(l.Ioptions)
 
 	return app.Div().

@@ -51,6 +51,13 @@ type section struct {
 	Icontent []app.UI
 }
 
+// Section returns a section component.
+func Section() UISection {
+	return &section{
+		Iclass: "uk-section",
+	}
+}
+
 func (s *section) Class(v string) UISection {
 	if s.Iclass != "" {
 		s.Iclass += " "
@@ -111,7 +118,6 @@ func (s *section) XSmall() UISection {
 }
 
 func (s *section) Render() app.UI {
-
 	return app.Div().
 		Class(s.Iclass).
 		Body(s.Icontent...)
