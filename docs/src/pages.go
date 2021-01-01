@@ -101,7 +101,7 @@ func (p *page) Render() app.UI {
 										uikit.Alert().
 											Primary().
 											Content(
-												app.Raw(`<a class="uk-alert-close" uk-close></a>`),
+												app.Raw(`<button class="uk-close-large" type="button" uk-close></button>`),
 												app.P().Text("I am a primary alert!"),
 											),
 									),
@@ -109,7 +109,7 @@ func (p *page) Render() app.UI {
 										uikit.Alert().
 											Success().
 											Content(
-												app.Raw(`<a class="uk-alert-close" uk-close></a>`),
+												app.Raw(`<button class="uk-close-large" type="button" uk-close></button>`),
 												app.P().Text("I am a success alert!"),
 											),
 									),
@@ -117,7 +117,7 @@ func (p *page) Render() app.UI {
 										uikit.Alert().
 											Warning().
 											Content(
-												app.Raw(`<a class="uk-alert-close" uk-close></a>`),
+												app.Raw(`<button class="uk-close-large" type="button" uk-close></button>`),
 												app.P().Text("I am a warning alert!"),
 											),
 									),
@@ -125,7 +125,7 @@ func (p *page) Render() app.UI {
 										uikit.Alert().
 											Danger().
 											Content(
-												app.Raw(`<a class="uk-alert-close" uk-close></a>`),
+												app.Raw(`<button class="uk-close-large" type="button" uk-close></button>`),
 												app.P().Text("I am a danger alert!"),
 											),
 									),
@@ -144,8 +144,8 @@ func (p *page) Render() app.UI {
 		Body(
 			uikit.Alert().
 				Danger().
-				Close(true).
 				Content(
+					app.Raw('<button class="uk-close-large" type="button" uk-close></button>'),
 					app.P().Text("I am a danger alert!"),
 				),
 			)
