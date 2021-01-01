@@ -7,7 +7,7 @@
         <meta name="description" content="A example application.">
         <meta name="keywords" content="go-app, uikit, pwa">
         <meta name="theme-color" content="#ffffff">
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover" name="viewport">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover">
         <title>
             GO-UIkit
         </title>
@@ -15,10 +15,10 @@
         <link rel="apple-touch-icon" href="/web/images/apple-touch-icon.png">
         <link rel="manifest" href="/manifest.webmanifest">
         <link type="text/css" rel="stylesheet" href="/app.css">
-        <script defer src="/wasm_exec.js"></script>
-        <script defer src="/app.js"></script>
+        <script src="/wasm_exec.js" defer></script>
+        <script src="/app.js" defer></script>
         <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;700&family=Montserrat:wght@300;400;700&display=swap">
-        <link type="text/css" rel="stylesheet" href="/web/css/uikit.min.css">
+        <link rel="stylesheet" href="/web/css/uikit.min.css" type="text/css">
         <link type="text/css" rel="stylesheet" href="/web/css/prism.css">
         <link type="text/css" rel="stylesheet" href="/web/css/app.css">
         <script defer src="/web/js/uikit.min.js"></script>
@@ -27,7 +27,7 @@
     </head>
     <body>
         <div id="app-wasm-layout" class="goapp-app-info">
-            <img src="/web/images/android-chrome-192x192.png" id="app-wasm-loader-icon" class="goapp-logo goapp-spin">
+            <img id="app-wasm-loader-icon" class="goapp-logo goapp-spin" src="/web/images/android-chrome-192x192.png">
             <p id="app-wasm-loader-label" class="goapp-label">
                 Loading Go-UIkit...
             </p>
