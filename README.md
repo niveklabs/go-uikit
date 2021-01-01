@@ -4,23 +4,29 @@
 
 - Accordion
 - Alert
+- Article
+- Breadcrumb
+- Button
 - Card
 - Container
 - Grid
+- Leader
+- Lightbox
+- Marker
 - Section
 
-### Example
+### Building Docs
 
 Compile WASM
 
 ```bash
-cd example
-GOARCH=wasm GOOS=js go build -v -o ./web/app.wasm .
+cd docs/
+GOARCH=wasm GOOS=js go build -v -o ./web/app.wasm ./src
 ```
 
 Compile Local server
 
 ```bash
-go build -v -o go-uikit-serve .
+go build -v -o go-uikit-serve ./src
 ./go-uikit-serve local
 ```
