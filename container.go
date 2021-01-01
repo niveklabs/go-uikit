@@ -6,7 +6,7 @@ import (
 	"github.com/maxence-charriere/go-app/v7/pkg/app"
 )
 
-// UIContainer is a component
+// UIContainer is a component that allows you to align and center your page content
 type UIContainer interface {
 	app.UI
 

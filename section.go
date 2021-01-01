@@ -6,7 +6,7 @@ import (
 	"github.com/maxence-charriere/go-app/v7/pkg/app"
 )
 
-// UISection is a component
+// UISection is a component that creates horizontal layout sections with different background colors and styles
 type UISection interface {
 	app.UI
 

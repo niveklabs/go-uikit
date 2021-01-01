@@ -6,7 +6,7 @@ import (
 	"github.com/maxence-charriere/go-app/v7/pkg/app"
 )
 
-// UILightbox is a component
+// UILightbox is a component that creates a responsive lightbox gallery with images and videos
 type UILightbox interface {
 	app.UI
 

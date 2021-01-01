@@ -24,68 +24,118 @@ type modifier struct {
 }
 
 type part struct {
-	Name string
+	Name     string
+	Required bool
 }
 
 var components = []component{
 	{
 		Name:   "accordion",
-		Doc:    "create a list of items that can be shown individually by clicking an item's header.",
+		Doc:    "creates a list of items that can be shown individually by clicking an item's header.",
 		Elem:   "Ul",
 		Option: true,
 	},
 	{
 		Name:      "alert",
-		Doc:       "display success, warning and error messages",
+		Doc:       "displays success, warning and error messages",
 		Modifiers: modifierByPrefix("uk-alert"),
 		Elem:      "Div",
 		Option:    true,
 	},
 	{
+		Name: "article",
+		Doc:  "consists of the article itself, a title and meta data",
+		Elem: "Article",
+		Parts: []part{
+			{
+				Name: "uk-article",
+			},
+		},
+	},
+	{
+		Name: "breadcrumb",
+		Doc:  "creates breadcrumbs to show users their location within a website",
+		Elem: "Ul",
+		Parts: []part{
+			{
+				Name: "uk-breadcrumb",
+			},
+		},
+	},
+	{
+		Name:      "button",
+		Doc:       "creates nice looking buttons, which come in different styles",
+		Modifiers: modifierByPrefix("uk-button", "uk-width-1-1"),
+		Elem:      "Button",
+		Parts: []part{
+			{
+				Name: "uk-button",
+			},
+		},
+	},
+	{
 		Name:      "card",
-		Doc:       "create layout boxes with different styles",
+		Doc:       "creates layout boxes with different styles",
 		Modifiers: modifierByPrefix("uk-card"),
 		Elem:      "Div",
+		Parts: []part{
+			{
+				Name: "uk-card",
+			},
+			{
+				Name: "uk-card-body",
+			},
+		},
 	},
 	{
 		Name:      "container",
 		Doc:       "allows you to align and center your page content",
 		Modifiers: modifierByPrefix("uk-container"),
 		Elem:      "Div",
+		Parts: []part{
+			{
+				Name: "uk-container",
+			},
+		},
 	},
 	{
 		Name:      "grid",
-		Doc:       "create a fully responsive, fluid and nestable grid layout",
+		Doc:       "creates a fully responsive, fluid and nestable grid layout",
 		Modifiers: modifierByPrefix("uk-grid"),
 		Elem:      "Div",
 		Option:    true,
 	},
 	{
 		Name:      "leader",
-		Doc:       "create dot leaders for pricing menus or tables of contents",
+		Doc:       "creates dot leaders for pricing menus or tables of contents",
 		Modifiers: modifierByPrefix("uk-leader"),
 		Elem:      "Div",
 		Option:    true,
 	},
 	{
 		Name:      "lightbox",
-		Doc:       "create a responsive lightbox gallery with images and videos",
+		Doc:       "creates a responsive lightbox gallery with images and videos",
 		Modifiers: modifierByPrefix("uk-lightbox"),
 		Elem:      "Div",
 		Option:    true,
 	},
 	{
 		Name:      "marker",
-		Doc:       "create a marker icon that can be displayed on top of images",
+		Doc:       "creates a marker icon that can be displayed on top of images",
 		Modifiers: modifierByPrefix("uk-marker"),
 		Elem:      "A",
 		Option:    true,
 	},
 	{
 		Name:      "section",
-		Doc:       "create horizontal layout sections with different background colors and styles",
+		Doc:       "creates horizontal layout sections with different background colors and styles",
 		Modifiers: modifierByPrefix("uk-section", "uk-padding-remove-vertical"),
 		Elem:      "Div",
+		Parts: []part{
+			{
+				Name: "uk-section",
+			},
+		},
 	},
 }
 
@@ -110,6 +160,47 @@ var modifiers = map[string]modifier{
 		Name:  "Danger",
 		Class: "uk-alert-danger",
 		Doc:   "indicates an important or error message.",
+	},
+	// Button
+	"uk-button-default": {
+		Name:  "Default",
+		Class: "uk-button-default",
+		Doc:   "button style.",
+	},
+	"uk-button-primary": {
+		Name:  "Primary",
+		Class: "uk-button-primary",
+		Doc:   "indicates the primary action.",
+	},
+	"uk-button-secondary": {
+		Name:  "Secondary",
+		Class: "uk-button-secondary",
+		Doc:   "indicates an important action.",
+	},
+	"uk-button-danger": {
+		Name:  "Danger",
+		Class: "uk-button-danger",
+		Doc:   "indicates a dangerous or negative action.",
+	},
+	"uk-button-text": {
+		Name:  "Text",
+		Class: "uk-button-text",
+		Doc:   "applies an alternative, typographic style.",
+	},
+	"uk-button-link": {
+		Name:  "Link",
+		Class: "uk-button-link",
+		Doc:   "makes a <button> look like an <a> element.",
+	},
+	"uk-button-small": {
+		Name:  "Small",
+		Class: "uk-button-small",
+		Doc:   "makes a <button> look smaller.",
+	},
+	"uk-button-large": {
+		Name:  "Large",
+		Class: "uk-button-large",
+		Doc:   "makes a <button> look larger.",
 	},
 	// Card
 	"uk-card-default": {
@@ -246,6 +337,11 @@ var modifiers = map[string]modifier{
 		Class: "uk-padding-remove-vertical",
 		Doc:   "removes top and bottom padding from an element.",
 	},
+	"uk-width-1-1": {
+		Name:  "FullWidth",
+		Class: "uk-width-1-1",
+		Doc:   "fills 100% of the available width.",
+	},
 }
 
 var uikitTmpl = `
@@ -257,7 +353,7 @@ import (
 	"github.com/maxence-charriere/go-app/v7/pkg/app"
 )
 
-// UI{{title .Name}} is a component
+// UI{{title .Name}} is a component that {{.Doc}}
 type UI{{title .Name}} interface {
 	app.UI
 
@@ -292,7 +388,7 @@ func {{title .Name}}() UI{{title .Name}} {
 	return &{{.Name}}{}
 {{else}}
 	return &{{.Name}}{
-		Iclass: "uk-{{.Name}}",
+		Iclass: "{{join .Parts}}",
 	}
 {{end -}}
 }
@@ -355,6 +451,13 @@ func generateUIkitGo() {
 		"lower": strings.ToLower,
 		"id": func(name string) string {
 			return strings.ToLower(string(name[0]))
+		},
+		"join": func(parts []part) string {
+			items := make([]string, 0, len(parts))
+			for _, v := range parts {
+				items = append(items, v.Name)
+			}
+			return strings.Join(items, " ")
 		},
 	}
 

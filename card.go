@@ -6,7 +6,7 @@ import (
 	"github.com/maxence-charriere/go-app/v7/pkg/app"
 )
 
-// UICard is a component
+// UICard is a component that creates layout boxes with different styles
 type UICard interface {
 	app.UI
 
@@ -45,7 +45,7 @@ type card struct {
 // Card returns a card component.
 func Card() UICard {
 	return &card{
-		Iclass: "uk-card",
+		Iclass: "uk-card uk-card-body",
 	}
 }
 

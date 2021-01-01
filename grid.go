@@ -6,7 +6,7 @@ import (
 	"github.com/maxence-charriere/go-app/v7/pkg/app"
 )
 
-// UIGrid is a component
+// UIGrid is a component that creates a fully responsive, fluid and nestable grid layout
 type UIGrid interface {
 	app.UI
 

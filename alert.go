@@ -6,7 +6,7 @@ import (
 	"github.com/maxence-charriere/go-app/v7/pkg/app"
 )
 
-// UIAlert is a component
+// UIAlert is a component that displays success, warning and error messages
 type UIAlert interface {
 	app.UI
 

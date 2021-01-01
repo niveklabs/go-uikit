@@ -6,7 +6,7 @@ import (
 	"github.com/maxence-charriere/go-app/v7/pkg/app"
 )
 
-// UILeader is a component
+// UILeader is a component that creates dot leaders for pricing menus or tables of contents
 type UILeader interface {
 	app.UI
 
