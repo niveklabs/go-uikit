@@ -3,7 +3,7 @@
 package uikit
 
 import (
-	"github.com/maxence-charriere/go-app/v7/pkg/app"
+	"github.com/maxence-charriere/go-app/v9/pkg/app"
 )
 
 // UIGrid is a component that creates a fully responsive, fluid and nestable grid layout

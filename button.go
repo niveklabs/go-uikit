@@ -3,7 +3,7 @@
 package uikit
 
 import (
-	"github.com/maxence-charriere/go-app/v7/pkg/app"
+	"github.com/maxence-charriere/go-app/v9/pkg/app"
 )
 
 // UIButton is a component that creates nice looking buttons, which come in different styles

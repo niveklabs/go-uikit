@@ -3,7 +3,7 @@
 package uikit
 
 import (
-	"github.com/maxence-charriere/go-app/v7/pkg/app"
+	"github.com/maxence-charriere/go-app/v9/pkg/app"
 )
 
 // UILeader is a component that creates dot leaders for pricing menus or tables of contents

@@ -1,8 +1,0 @@
-# github.com/google/uuid v1.1.2
-github.com/google/uuid
-# github.com/maxence-charriere/go-app/v7 v7.0.7
-## explicit
-github.com/maxence-charriere/go-app/v7/pkg/app
-github.com/maxence-charriere/go-app/v7/pkg/cli
-github.com/maxence-charriere/go-app/v7/pkg/errors
-github.com/maxence-charriere/go-app/v7/pkg/logs

@@ -3,7 +3,7 @@
 package uikit
 
 import (
-	"github.com/maxence-charriere/go-app/v7/pkg/app"
+	"github.com/maxence-charriere/go-app/v9/pkg/app"
 )
 
 // UIMarker is a component that creates a marker icon that can be displayed on top of images

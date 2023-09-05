@@ -3,7 +3,7 @@
 package uikit
 
 import (
-	"github.com/maxence-charriere/go-app/v7/pkg/app"
+	"github.com/maxence-charriere/go-app/v9/pkg/app"
 )
 
 // UIArticle is a component that consists of the article itself, a title and meta data

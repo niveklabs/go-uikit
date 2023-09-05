@@ -1,3 +1,4 @@
+//go:build !wasm
 // +build !wasm
 
 package main
@@ -9,10 +10,10 @@ import (
 	"os"
 	"syscall"
 
-	"github.com/maxence-charriere/go-app/v7/pkg/app"
-	"github.com/maxence-charriere/go-app/v7/pkg/cli"
-	"github.com/maxence-charriere/go-app/v7/pkg/errors"
-	"github.com/maxence-charriere/go-app/v7/pkg/logs"
+	"github.com/maxence-charriere/go-app/v9/pkg/app"
+	"github.com/maxence-charriere/go-app/v9/pkg/cli"
+	"github.com/maxence-charriere/go-app/v9/pkg/errors"
+	"github.com/maxence-charriere/go-app/v9/pkg/logs"
 )
 
 type localOptions struct {
@@ -85,8 +86,8 @@ func main() {
 
 func runLocal(ctx context.Context, h *app.Handler, opts localOptions) {
 	app.Log("%s", logs.New("starting GO-UIkit service").
-		Tag("port", opts.Port).
-		Tag("version", h.Version),
+		WithTag("port", opts.Port).
+		WithTag("version", h.Version),
 	)
 
 	s := http.Server{

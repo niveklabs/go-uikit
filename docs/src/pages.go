@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/maxence-charriere/go-app/v7/pkg/app"
-	uikit "github.com/niveklabs/go-uikit"
+	"github.com/maxence-charriere/go-app/v9/pkg/app"
+	uikit "github.com/omani/go-uikit"
 )
 
-func pages() map[string]func() app.UI {
-	return map[string]func() app.UI{
-		"": newPage,
+func pages() map[string]app.UI {
+	return map[string]app.UI{
+		"": &page{},
 	}
 }
 
@@ -15,12 +15,8 @@ type page struct {
 	app.Compo
 }
 
-func newPage() app.UI {
-	return &page{}
-}
-
-func (p *page) highlightCode() {
-	app.Dispatch(func() {
+func (p *page) highlightCode(ctx app.Context) {
+	ctx.Dispatch(func(ctx app.Context) {
 		app.Window().Get("Prism").Call("highlightAll")
 	})
 }
@@ -31,9 +27,9 @@ func (p *page) OnMount(ctx app.Context) {
 }
 
 func (p *page) load(ctx app.Context) {
-	defer app.Dispatch(func() {
+	defer ctx.Dispatch(func(ctx app.Context) {
 		p.Update()
-		p.highlightCode()
+		p.highlightCode(ctx)
 	})
 }
 
